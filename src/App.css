@@ -1,0 +1,20 @@
+body {
+  min-height: 100vh;
+  background-image: url("./assets/pexels-brett-sayles-912364.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.info-panel {
+  display: flex;
+  justify-content: end;
+  margin-right: 60px;
+}
+.poppins {
+  font-family: "Poppins", sans-serif;
+}
+.container{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}

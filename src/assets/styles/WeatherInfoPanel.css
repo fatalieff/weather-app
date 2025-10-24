@@ -1,0 +1,14 @@
+.weather-info-panel {
+  width: 526px;
+  height: 100vh;
+
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(2px);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: white;
+}
