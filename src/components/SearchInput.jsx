@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Input = ({ setCity }) => {
+const Input = ({ setCity, setLoading}) => {
   return (
     <StyledWrapper>
       <div className="input-container">
@@ -9,11 +9,13 @@ const Input = ({ setCity }) => {
           type="text"
           required
           id="input"
-          onChange={(e) => {
-            if (e.target.value.trim() === "") {
-              setCity("");
-            } else {
-              setCity(e.target.value);
+          onChange={(e)=>{
+            if(e.target.value.trim() === ""){
+              setCity("")
+            }else{
+              setLoading(true)
+              setCity(e.target.value); 
+              setLoading(false)
             }
           }}
         />
@@ -37,7 +39,7 @@ const StyledWrapper = styled.div`
     font-size: 20px;
     width: 100%;
     border: none;
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid #ccc;
     padding: 5px 0;
     background-color: transparent;
     outline: none;
@@ -47,7 +49,7 @@ const StyledWrapper = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    color: #fff;
+    color: #ccc;
     transition: all 0.3s ease;
     pointer-events: none;
   }
@@ -56,7 +58,7 @@ const StyledWrapper = styled.div`
   .input-container input[type="text"]:valid ~ .label {
     top: -20px;
     font-size: 16px;
-    color: #FFD700;
+    color: #333;
   }
 
   .input-container .underline {
@@ -65,7 +67,7 @@ const StyledWrapper = styled.div`
     left: 0;
     height: 2px;
     width: 100%;
-    background-color: #FFD700;
+    background-color: #333;
     transform: scaleX(0);
     transition: all 0.3s ease;
   }

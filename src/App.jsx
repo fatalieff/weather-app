@@ -26,29 +26,18 @@ function App() {
       fetchData();
     }
   }, [city]);
+  console.log(weather);
+  
   const formatTemp = (t) => (typeof t === "number" ? `${Math.round(t)}°C` : t);
-  const formatDate = (date) => {
-    const options = {
-      weekday: "long",
-      day: "numeric",
-      month: "short",
-      year: "2-digit",
-    };
-    const time = date.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-    const formattedDate = date.toLocaleDateString("en-US", options);
-    return `${time} - ${formattedDate}`;
-  };
   return (
-    <div className="container items-end">
+    <div className="container  items-end">
       <div className="info-panel w-min h-min">
         <WeatherInfoPanel
           weather={weather}
           loading={loading}
           city={city}
           setCity={setCity}
+          setLoading={setLoading}
         />
       </div>
       <div className="weather-header flex gap-[10px] w-min h-min items-center mb-[100px]">
@@ -60,12 +49,12 @@ function App() {
         <div className="right-section flex flex-col h-min">
           <div className="country w-min h-min">
             <span className="text-center text-[60px] font-[400] text-[#fff] poppins tracking-[0px]">
-              {weather.name}
+              {weather?.name}
             </span>
           </div>
           <div className="date w-max h-min">
             <span className="text-center text-[18px] text-[#fff] tracking-[0px] poppins font-[400]">
-              {formatDate(new Date())}
+              
             </span>
           </div>
         </div>
