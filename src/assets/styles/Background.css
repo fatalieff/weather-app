@@ -1,0 +1,141 @@
+.sky-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: linear-gradient(
+    160deg,
+    #0c1445 0%,
+    #1a237e 22%,
+    #4a148c 48%,
+    #c62828 72%,
+    #ff6f00 88%,
+    #ffd54f 100%
+  );
+  background-size: 200% 200%;
+  animation: skyShift 18s ease-in-out infinite alternate;
+}
+
+.sky-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 75% 15%, rgba(255, 213, 79, 0.55) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(74, 20, 140, 0.4) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 30% at 50% 50%, rgba(26, 35, 126, 0.25) 0%, transparent 70%);
+  animation: glowPulse 10s ease-in-out infinite alternate;
+}
+
+.sky-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    rgba(12, 20, 69, 0.35) 100%
+  );
+}
+
+/* Floating clouds */
+.cloud {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  filter: blur(40px);
+  animation: cloudDrift linear infinite;
+}
+
+.cloud-1 {
+  width: 420px;
+  height: 120px;
+  top: 12%;
+  left: -10%;
+  animation-duration: 38s;
+}
+
+.cloud-2 {
+  width: 320px;
+  height: 90px;
+  top: 28%;
+  right: -5%;
+  animation-duration: 28s;
+  animation-delay: -8s;
+  background: rgba(255, 200, 150, 0.1);
+}
+
+.cloud-3 {
+  width: 500px;
+  height: 140px;
+  bottom: 18%;
+  left: 20%;
+  animation-duration: 45s;
+  animation-delay: -15s;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cloud-4 {
+  width: 260px;
+  height: 70px;
+  top: 55%;
+  right: 15%;
+  animation-duration: 32s;
+  animation-delay: -20s;
+  background: rgba(200, 180, 255, 0.08);
+}
+
+/* Subtle stars */
+.stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(255, 255, 255, 0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 8%, rgba(255, 255, 255, 0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 12%, rgba(255, 255, 255, 0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 6%, rgba(255, 255, 255, 0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 18%, rgba(255, 255, 255, 0.55) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 85% 10%, rgba(255, 255, 255, 0.65) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 25%, rgba(255, 255, 255, 0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 22%, rgba(255, 255, 255, 0.45) 0%, transparent 100%);
+  animation: starTwinkle 6s ease-in-out infinite alternate;
+}
+
+@keyframes skyShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes cloudDrift {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(40px) translateY(-12px);
+  }
+  100% {
+    transform: translateX(80px) translateY(6px);
+  }
+}
+
+@keyframes starTwinkle {
+  0% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}

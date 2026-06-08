@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import "./assets/styles/Background.css";
 import WeatherInfoPanel from "./components/WeatherInfoPanel";
 import axios from "axios";
 
@@ -21,17 +22,50 @@ function App() {
     }
     setLoading(false);
   };
+
   useEffect(() => {
     if (city) {
       fetchData();
     }
   }, [city]);
-  console.log(weather);
-  
-  const formatTemp = (t) => (typeof t === "number" ? `${Math.round(t)}°C` : t);
+
+  const formatTemp = (t) => (typeof t === "number" ? `${Math.round(t)}°` : "—°");
+  const today = new Date().toLocaleDateString("en-US", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  });
+
   return (
-    <div className="container  items-end">
-      <div className="info-panel w-min h-min">
+    <div className="app">
+      <div className="sky-bg" aria-hidden="true">
+        <div className="stars" />
+        <div className="cloud cloud-1" />
+        <div className="cloud cloud-2" />
+        <div className="cloud cloud-3" />
+        <div className="cloud cloud-4" />
+      </div>
+
+      <div className="weather-header">
+        <div className="left-section">
+          <span className={`temperature poppins ${loading ? "loading" : ""}`}>
+            {formatTemp(weather?.main?.temp)}
+          </span>
+        </div>
+        <div className="right-section">
+          <span className="city-name poppins">
+            {weather?.name ?? "Weather"}
+          </span>
+          {weather?.weather?.[0]?.description && (
+            <span className="weather-desc poppins">
+              {weather.weather[0].description}
+            </span>
+          )}
+          <span className="date-text poppins">{today}</span>
+        </div>
+      </div>
+
+      <div className="info-panel">
         <WeatherInfoPanel
           weather={weather}
           loading={loading}
@@ -39,25 +73,6 @@ function App() {
           setCity={setCity}
           setLoading={setLoading}
         />
-      </div>
-      <div className="weather-header flex gap-[10px] w-min h-min items-center mb-[100px]">
-        <div className="left-section h-min w-min">
-          <span className="text-[143px] font-[400] poppins tracking-[-8px] text-[#fff]">
-            {formatTemp(weather?.main?.temp)}
-          </span>
-        </div>
-        <div className="right-section flex flex-col h-min">
-          <div className="country w-min h-min">
-            <span className="text-center text-[60px] font-[400] text-[#fff] poppins tracking-[0px]">
-              {weather?.name}
-            </span>
-          </div>
-          <div className="date w-max h-min">
-            <span className="text-center text-[18px] text-[#fff] tracking-[0px] poppins font-[400]">
-              
-            </span>
-          </div>
-        </div>
       </div>
     </div>
   );

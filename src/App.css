@@ -1,20 +1,131 @@
-body {
-  height: 100vh;
-  background-image: url("./assets/pexels-tahir-shaw-50609-186980.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-.info-panel {
+.app {
+  position: relative;
+  min-height: 100vh;
   display: flex;
-  justify-content: end;
-  margin-right: 60px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 60px;
+  gap: 40px;
+  overflow: hidden;
 }
+
 .poppins {
   font-family: "Poppins", sans-serif;
 }
-.container{
+
+/* ── Main weather display ── */
+.weather-header {
+  position: relative;
+  z-index: 1;
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex: 1;
+  padding-bottom: 20px;
+  animation: fadeSlideUp 0.7s ease both;
+}
+
+.left-section {
+  line-height: 0.85;
+}
+
+.temperature {
+  font-size: clamp(80px, 12vw, 143px);
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: -6px;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease;
+}
+
+.temperature.loading {
+  opacity: 0.4;
+}
+
+.right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 18px;
+}
+
+.city-name {
+  font-size: clamp(32px, 5vw, 60px);
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+  line-height: 1.1;
+}
+
+.weather-desc {
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+}
+
+.date-text {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 4px;
+}
+
+/* ── Info panel wrapper ── */
+.info-panel {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  animation: fadeSlideLeft 0.7s ease 0.15s both;
+}
+
+/* ── Animations ── */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .app {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    padding: 24px 20px;
+    gap: 24px;
+  }
+
+  .weather-header {
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 0;
+  }
+
+  .right-section {
+    align-items: center;
+    text-align: center;
+    padding-bottom: 0;
+  }
+
+  .info-panel {
+    width: 100%;
+  }
 }
