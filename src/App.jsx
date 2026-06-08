@@ -24,10 +24,17 @@ function App() {
   };
 
   useEffect(() => {
-    if (city) {
-      fetchData();
-    }
+    if (city) fetchData();
   }, [city]);
+
+  const handleCitySelect = (selectedCity) => {
+    setCity(selectedCity);
+  };
+
+  const handleClear = () => {
+    setCity("");
+    setWeather(null);
+  };
 
   const formatTemp = (t) => (typeof t === "number" ? `${Math.round(t)}°` : "—°");
   const today = new Date().toLocaleDateString("en-US", {
@@ -69,9 +76,8 @@ function App() {
         <WeatherInfoPanel
           weather={weather}
           loading={loading}
-          city={city}
-          setCity={setCity}
-          setLoading={setLoading}
+          onCitySelect={handleCitySelect}
+          onClear={handleClear}
         />
       </div>
     </div>

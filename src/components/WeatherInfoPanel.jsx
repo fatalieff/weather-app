@@ -2,7 +2,7 @@ import React from "react";
 import "../assets/styles/WeatherInfoPanel.css";
 import Input from "./SearchInput";
 
-function WeatherInfoPanel({ weather, loading, city, setCity, setLoading }) {
+function WeatherInfoPanel({ weather, loading, onCitySelect, onClear }) {
   const tempMax = weather?.main?.temp_max ?? "—";
   const tempMin = weather?.main?.temp_min ?? "—";
   const humidity = weather?.main?.humidity ?? "—";
@@ -27,13 +27,7 @@ function WeatherInfoPanel({ weather, loading, city, setCity, setLoading }) {
   return (
     <div className="weather-info-panel">
       <div className="search-panel">
-        <Input
-          weather={weather}
-          loading={loading}
-          city={city}
-          setCity={setCity}
-          setLoading={setLoading}
-        />
+        <Input onCitySelect={onCitySelect} onClear={onClear} />
       </div>
 
       <div className="weather-details">
